@@ -6,15 +6,16 @@
 <!-- This is your HTML -->
 <template>
   <div class="testimonial_B">
+    <!-- wwManager:start -->
+    <wwSectionEditMenu v-bind:section="section"></wwSectionEditMenu>
+    <!-- wwManager:end -->
 
     <wwObject class="background" v-bind:ww-object="section.data.testimonialBg" v-bind:section="section" ww-category="background"></wwObject>
     <div class="content">
-      <div class="content-title">
-        <wwObject tag="div" v-bind:ww-object="section.data.contentTitle" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
-      </div>
       <!-- bg == background -->
       <div class="left-section">
         <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
+
         <div class="testimony-left-pic-container">
           <wwObject class="testimony-left-pic" tag="div" v-bind:ww-object="section.data.leftTestimonyPic" v-bind:section="section" ww-category="background">
           </wwObject>
@@ -26,28 +27,30 @@
 
       </div>
       <div class="right-section">
-        <wwObject class="right-section-background" v-bind:ww-object="section.data.rightSectionBg" v-bind:section="section" ww-category="background">
+        <wwObject class="right-section-bg" v-bind:ww-object="section.data.rightSectionBg" v-bind:section="section" ww-category="background">
         </wwObject>
-        <div class="right-section-text">
-          <wwObject class="right-text-background" v-bind:ww-object="section.data.rightSectionTextBg" v-bind:section="section" ww-category="background">
+        <div class="right-section-text-container">
+          <wwObject class="right-text-bg" v-bind:ww-object="section.data.rightSectionTextBg" v-bind:section="section" ww-category="background">
           </wwObject>
           <wwObject class="right-text" v-bind:ww-object="section.data.rightText" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
-          <div class="right-bottom-icon" v-bind:ww-object="section.data.rightBottomIcon" v-bind:section="section" ww-category="ww-icon"></div>
-          <div class="right-top-icon" v-bind:ww-object="section.data.rightTopIcon" v-bind:section="section" ww-category="ww-icon"></div>
+          <div class="right-icon right-bottom-icon fa fa-quote-right" v-bind:ww-object="section.data.rightBottomIcon" v-bind:section="section" ww-category="ww-icon"></div>
+          <div class="right-icon right-top-icon fa fa-quote-left" v-bind:ww-object="section.data.rightTopIcon" v-bind:section="section" ww-category="ww-icon"></div>
           <div class="right-tail" v-bind:ww-object="section.data.rightTail" v-bind:section="section" ww-category="ww-background"></div>
         </div>
-        <div class="right-btn-container">
-          <div class="button-container">
-            <div class="transition-button">
-              <wwObject v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-categoy="ww-button"></wwObject>
-            </div>
-            <div class="slide-btn previous-btn">
+
+        <div class="button-container">
+          <div class="mission-button">
+            <wwObject v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']"></wwObject>
+          </div>
+          <div class="transition-button ">
+            <div class="slide previous-btn fa fa-chevron-left">
               <div class="" @click="previousSlide()" v-bind:ww-object="section.data.previous" v-bind:section="section" ww-default-object-type="ww-icon" ww-object-types-allowed="['ww-icon']" ww-ignore-link="true"></div>
             </div>
-            <div class="slide-btn next-btn">
+            <div class="slide next-btn fa fa-chevron-right">
               <div class="" @click="nextSlide()" v-bind:ww-object="section.data.next" v-bind:section="section" ww-default-object-type="ww-icon" ww-object-types-allowed="['ww-icon']" ww-ignore-link="true"></div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -71,9 +74,7 @@ export default {
     if (!this.section.data.testimonialBg) {
       this.section.data.testimonialBg = wwLib.wwObject.getDefault({
         type: "ww-image",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
 
@@ -118,7 +119,7 @@ export default {
             fr_FR: "Michel Dow - Directeur immobilier Solvay",
             en_GB: "Michel Dow - Directeur immobilier Solvay"
           },
-          align: "center",
+          align: "left",
           color: "black"
         }
       });
@@ -128,18 +129,14 @@ export default {
     if (!this.section.data.rightSectionBg) {
       this.section.data.rightSectionBg = wwLib.wwObject.getDefault({
         type: "ww-image",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
 
     if (!this.section.data.rightSectionTextBg) {
       this.section.data.rightSectionTextBg = wwLib.wwObject.getDefault({
         type: "ww-image",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
 
@@ -153,33 +150,27 @@ export default {
             en_GB:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate"
           },
-          align: "center",
-          color: "black"
+          align: "justify",
+          color: "white"
         }
       });
     }
     if (!this.section.data.rightBottomIcon) {
       this.section.data.rightBottomIcon = wwLib.wwObject.getDefault({
         type: "ww-icon",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
     if (!this.section.data.rightTopIcon) {
       this.section.data.rightTopIcon = wwLib.wwObject.getDefault({
         type: "ww-icon",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
     if (!this.section.data.rightTail) {
       this.section.data.rightTail = wwLib.wwObject.getDefault({
         type: "ww-image",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
 
@@ -214,18 +205,14 @@ export default {
     if (!this.section.data.previous) {
       this.section.data.previous = wwLib.wwObject.getDefault({
         type: "ww-icon",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
 
     if (!this.section.data.next) {
       this.section.data.next = wwLib.wwObject.getDefault({
         type: "ww-icon",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
   },
@@ -237,6 +224,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <!-- Add lang="scss" or others to use computed CSS -->
 <style scoped>
+.testimonial_B {
+  position: relative;
+}
+
 .testimonial_B .background {
   position: absolute;
   top: 0;
@@ -249,13 +240,8 @@ export default {
 .testimonial_B .content {
   position: relative;
   width: 100%;
+  height: 700px;
   padding-bottom: 100px;
-}
-
-.testimonial_B .content-title {
-  width: 100%;
-  height: 100px;
-  margin-top: 50px;
 }
 
 /* Left section CSS */
@@ -293,7 +279,7 @@ export default {
   background-color: #ff3f66;
   padding: 20px;
   margin-left: 50%;
-  bottom: 15%;
+  bottom: 20%;
   position: absolute;
 }
 
@@ -302,69 +288,133 @@ export default {
   height: 100%;
   position: relative;
   margin-left: 50%;
+  min-height: calc(100% - 230px);
 }
 
-.testimonial_B .right-section-background {
-  width: 100px;
-  height: 100px;
+.testimonial_B .right-section-bg {
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 
-.testimonial_B .right-section-text {
-  width: 100px;
+.testimonial_B .right-section-text-container {
+  width: 55%;
+  height: 55%;
+  position: absolute;
+  top: 0px;
+  float: left;
 }
 
-.testimonial_B .right-text-background {
-  width: 100px;
-  height: 100px;
+.testimonial_B .right-text-bg {
+  width: 100%;
+  height: 100%;
+  margin: 10% 0 0 10%;
+  position: absolute;
+  border-radius: 25px;
+  box-sizing: border-box;
+
+  background-color: #897978;
 }
 
 .testimonial_B .right-text {
-  width: 50px;
-  height: 100px;
+  width: 80%;
+  height: 80%;
+  margin: 20%;
+  line-height: 25px;
 }
 
-.testimonial_B .right-bottom-icon {
+.testimonial_B .right-icon {
   width: 30px;
   height: 30px;
+  background-color: #897978;
+  position: absolute;
+  padding-top: 8px;
+  align-self: center;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  display: block;
+  font-size: 20px;
+  font-stretch: 100%;
+  font-style: normal;
+  font-weight: 400;
+  border-radius: 5px;
+  box-sizing: border-box;
+  line-height: 20px;
+  text-align: center;
+}
+.testimonial_B .right-bottom-icon {
+  right: 10%;
+  bottom: -16%;
 }
 
 .testimonial_B .right-top-icon {
-  width: 30px;
-  height: 30px;
+  top: 10%;
+  left: 25%;
 }
 
 .testimonial_B .right-tail {
   width: 30px;
   height: 30px;
-}
-
-.testimonial_B .right-btn-container {
-  width: 100%;
-  height: 50px;
+  position: absolute;
+  top: 100px;
+  left: 10%;
+  font-size: 20px;
+  background-color: #897978;
+  transform: matrix(0.707107, 0.707107, -0.707107, 0.707107, -15, 0);
 }
 
 .testimonial_B .button-container {
-  width: 100px;
+  width: 60%;
   height: 100px;
+  position: absolute;
+  bottom: 10px;
+  left: 100px;
+  display: inline-flex;
+  text-size-adjust: 100%;
 }
-
+/* temporary */
+.testimonial_B .mission-button {
+  width: 140px;
+  height: 38px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 500px;
+  border-color: rgb(137, 121, 120);
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  color: rgb(137, 121, 120);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 10px 10px 5px;
+  text-align: center;
+}
 .testimonial_B .transition-button {
-  width: 100px;
-  height: 50px;
+  float: right;
+  margin-left: 50px;
 }
 
-.testimonial_B .slide-btn {
-  width: 30px;
-  height: 30px;
+.testimonial_B .slide {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: rgb(137, 121, 120);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 22px;
+  border-radius: 500px;
+  border-color: rgb(137, 121, 120);
+  border-style: solid;
+  border-width: 2px;
+  padding: 10px;
 }
 
 .testimonial_B .previous-btn {
-  width: 30px;
-  height: 30px;
+  float: left;
+  margin-right: 40px;
 }
 
 .testimonial_B .next-btn {
-  width: 30px;
-  height: 30px;
+  float: right;
 }
 </style>
