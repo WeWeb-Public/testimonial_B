@@ -6,18 +6,23 @@
 <!-- This is your HTML -->
 <template>
   <div class="testimonial_B">
-    <div class="content">
-      <wwObject class="background" v-bind:ww-object="section.data.testimonialBg" v-bind:section="section" ww-category="background"></wwObject>
 
+    <wwObject class="background" v-bind:ww-object="section.data.testimonialBg" v-bind:section="section" ww-category="background"></wwObject>
+    <div class="content">
       <div class="content-title">
-        <div v-bind:ww-object="section.data.contentTitle" v-bind:section="section" ww-cate="ww-text"></div>
+        <wwObject tag="div" v-bind:ww-object="section.data.contentTitle" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
       </div>
       <!-- bg == background -->
       <div class="left-section">
-        <div v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></div>
-        <wwObject tag="div" class="testmoniy-right-bg" v-bind:ww-object="section.data.leftTestimonyBg" v-bind:section="section" ww-category="background">
-        </wwObject>
-        <div class="testmony-right-bio" v-bind:ww-object="section.data.leftTestmonyBio" v-bind:section="section" ww-category="ww-text"></div>
+        <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
+        <div class="testimony-left-pic-container">
+          <wwObject class="testimony-left-pic" tag="div" v-bind:ww-object="section.data.leftTestimonyPic" v-bind:section="section" ww-category="background">
+          </wwObject>
+        </div>
+
+        <div class="testimony-left-bio">
+          <wwObject tag="div" v-bind:ww-object="section.data.leftTestmonyBio" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
+        </div>
 
       </div>
       <div class="right-section">
@@ -57,7 +62,7 @@ export default {
   props: {
     // The section object is passed to you.
     // It contains all the info and data about the section
-    // Use it has you like !
+    // Use it as you like !
     section: Object
   },
   created() {
@@ -72,18 +77,8 @@ export default {
       });
     }
 
-    // left section
-    if (!this.section.data.leftSectionBg) {
-      this.section.data.leftSectionBg = wwLib.wwObject.getDefault({
-        type: "ww-image",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
-      });
-    }
-
     if (!this.section.data.contentTitle) {
-      this.section.data.contentTitle = wwLib.Object.getDefault({
+      this.section.data.contentTitle = wwLib.wwObject.getDefault({
         type: "ww-text",
         data: {
           text: {
@@ -91,22 +86,32 @@ export default {
             en_GB: "They trust us"
           },
           align: "center",
+          size: 2,
           color: "black"
         }
       });
     }
-
-    if (!this.section.data.leftTestimonyBg) {
-      this.section.data.leftTestimonyBg = wwLib.wwObject.getDefault({
+    // left section
+    if (!this.section.data.leftSectionBg) {
+      this.section.data.leftSectionBg = wwLib.wwObject.getDefault({
         type: "ww-image",
-        data: {
-          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
-        }
+        data: {}
       });
     }
 
-    if (!this.section.data.leftTestimonyBg) {
-      this.section.data.leftTestmonyBio = wwLib.Object.getDefault({
+    if (!this.section.data.leftTestimonyPic) {
+      this.section.data.leftTestimonyPic = wwLib.wwObject.getDefault({
+        type: "ww-image",
+        data: {
+          url:
+            "https://wewebprod.s3.eu-west-1.amazonaws.com/designs/277/sections/Mqtvc0q6xHHeMeYXeFed48x7gXje6ufu.png"
+        }
+      });
+    }
+    //
+
+    if (!this.section.data.leftTestmonyBio) {
+      this.section.data.leftTestmonyBio = wwLib.wwObject.getDefault({
         type: "ww-text",
         data: {
           text: {
@@ -129,8 +134,17 @@ export default {
       });
     }
 
+    if (!this.section.data.rightSectionTextBg) {
+      this.section.data.rightSectionTextBg = wwLib.wwObject.getDefault({
+        type: "ww-image",
+        data: {
+          url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
+        }
+      });
+    }
+
     if (!this.section.data.rightText) {
-      this.section.data.rightText = wwLib.Object.getDefault({
+      this.section.data.rightText = wwLib.wwObject.getDefault({
         type: "ww-text",
         data: {
           text: {
@@ -170,7 +184,7 @@ export default {
     }
 
     if (!this.section.data.transitionButton) {
-      this.section.data.transitionButton = wwLib.Object.getDefault({
+      this.section.data.transitionButton = wwLib.wwObject.getDefault({
         type: "ww-text",
         data: {
           text: {
@@ -184,7 +198,7 @@ export default {
     }
 
     if (!this.section.data.transitionButton) {
-      this.section.data.transitionButton = wwLib.Object.getDefault({
+      this.section.data.transitionButton = wwLib.wwObject.getDefault({
         type: "ww-text",
         data: {
           text: {
@@ -198,7 +212,7 @@ export default {
     }
 
     if (!this.section.data.previous) {
-      this.section.data.previous = wwLib.Object.getDefault({
+      this.section.data.previous = wwLib.wwObject.getDefault({
         type: "ww-icon",
         data: {
           url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
@@ -207,7 +221,7 @@ export default {
     }
 
     if (!this.section.data.next) {
-      this.section.data.next = wwLib.Object.getDefault({
+      this.section.data.next = wwLib.wwObject.getDefault({
         type: "ww-icon",
         data: {
           url: "http://cdn.wewebapp.io/public/images/weweb-wp.png"
@@ -223,33 +237,76 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <!-- Add lang="scss" or others to use computed CSS -->
 <style scoped>
+.testimonial_B .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
 .testimonial_B .content {
   position: relative;
   width: 100%;
   padding-bottom: 100px;
 }
 
+.testimonial_B .content-title {
+  width: 100%;
+  height: 100px;
+  margin-top: 50px;
+}
+
 /* Left section CSS */
 .testimonial_B .left-section {
   width: 50%;
   height: 100%;
+  position: absolute;
+  left: 0px;
 }
 
-.testimonial_B .testmoniy-right-bg {
-  width: 100px;
+.testimonial_B .left-section-bg {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+.testimonial_B .testimony-left-pic-container {
+  width: 350px;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  margin-left: 50%;
+}
+/* #FF3F66 -rose
+  #897978 -grey text
+*/
+.testimonial_B .testimony-left-pic {
+  width: 100%;
+  height: 100%;
 }
 
-.testimonial_B .testmoniy-right-bio {
-  width: 100px;
+.testimonial_B .testimony-left-bio {
+  width: 40%;
+  height: 100px;
+  background-color: #ff3f66;
+  padding: 20px;
+  margin-left: 50%;
+  bottom: 15%;
+  position: absolute;
 }
 
 .testimonial_B .right-section {
   width: 50%;
   height: 100%;
+  position: relative;
+  margin-left: 50%;
 }
 
 .testimonial_B .right-section-background {
   width: 100px;
+  height: 100px;
 }
 
 .testimonial_B .right-section-text {
@@ -258,10 +315,12 @@ export default {
 
 .testimonial_B .right-text-background {
   width: 100px;
+  height: 100px;
 }
 
 .testimonial_B .right-text {
   width: 50px;
+  height: 100px;
 }
 
 .testimonial_B .right-bottom-icon {
@@ -286,10 +345,12 @@ export default {
 
 .testimonial_B .button-container {
   width: 100px;
+  height: 100px;
 }
 
 .testimonial_B .transition-button {
   width: 100px;
+  height: 50px;
 }
 
 .testimonial_B .slide-btn {
@@ -298,18 +359,12 @@ export default {
 }
 
 .testimonial_B .previous-btn {
-  margin: 0;
+  width: 30px;
+  height: 30px;
 }
 
 .testimonial_B .next-btn {
-  margin: 0;
-}
-
-.testimonial_B .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  width: 30px;
+  height: 30px;
 }
 </style>
