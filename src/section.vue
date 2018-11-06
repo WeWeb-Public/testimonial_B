@@ -368,7 +368,7 @@ export default {
   height: 100px;
   position: absolute;
   bottom: 10px;
-  left: 100px;
+  left: 10%;
   display: inline-flex;
   text-size-adjust: 100%;
 }
@@ -385,9 +385,10 @@ export default {
   color: rgb(137, 121, 120);
   cursor: pointer;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 150%;
   padding: 5px 10px 10px 5px;
   text-align: center;
+  margin-top: 1.5%;
 }
 .testimonial_B .transition-button {
   float: right;
@@ -401,7 +402,7 @@ export default {
   color: rgb(137, 121, 120);
   cursor: pointer;
   font-size: 20px;
-  line-height: 22px;
+  line-height: 130%;
   border-radius: 500px;
   border-color: rgb(137, 121, 120);
   border-style: solid;
