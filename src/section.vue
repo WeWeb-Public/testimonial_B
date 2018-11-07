@@ -12,23 +12,26 @@
 
     <wwObject class="background" v-bind:ww-object="section.data.testimonialBg" v-bind:section="section" ww-category="background"></wwObject>
     <div class="content">
-      <!-- bg == background -->
-      <div class="left-section">
-        <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
+      <transition name="slide-left">
+        <div class="left-section">
+          <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
 
-        <div class="testimony-left-pic-container">
-          <wwObject class="testimony-left-pic" tag="div" v-bind:ww-object="section.data.leftTestimonyPic" v-bind:section="section" ww-category="background">
-          </wwObject>
+          <div class="testimony-left-pic-container">
+            <wwObject class="testimony-left-pic" tag="div" v-bind:ww-object="section.data.leftTestimonyPic" v-bind:section="section" ww-category="background">
+            </wwObject>
+          </div>
+
+          <div class="testimony-left-bio">
+            <wwObject tag="div" v-bind:ww-object="section.data.leftTestmonyBio" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
+          </div>
         </div>
+      </transition>
 
-        <div class="testimony-left-bio">
-          <wwObject tag="div" v-bind:ww-object="section.data.leftTestmonyBio" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
-        </div>
-
-      </div>
       <div class="right-section">
+
         <wwObject class="right-section-bg" v-bind:ww-object="section.data.rightSectionBg" v-bind:section="section" ww-category="background">
         </wwObject>
+
         <div class="right-section-text-container">
           <wwObject class="right-text-bg" v-bind:ww-object="section.data.rightSectionTextBg" v-bind:section="section" ww-category="background">
           </wwObject>
@@ -39,15 +42,17 @@
         </div>
 
         <div class="button-container">
+
           <div class="mission-button">
-            <wwObject v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']"></wwObject>
+            <wwObject @click.native="previousFn" v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']"></wwObject>
           </div>
-          <div class="transition-button ">
+
+          <div class="transition-button">
             <div class="slide previous-btn fa fa-chevron-left">
-              <div class="" @click="previousSlide()" v-bind:ww-object="section.data.previous" v-bind:section="section" ww-default-object-type="ww-icon" ww-object-types-allowed="['ww-icon']" ww-ignore-link="true"></div>
+              <div class="" v-bind:ww-object="section.data.previous" v-bind:section="section" ww-category="ww-icon"></div>
             </div>
             <div class="slide next-btn fa fa-chevron-right">
-              <div class="" @click="nextSlide()" v-bind:ww-object="section.data.next" v-bind:section="section" ww-default-object-type="ww-icon" ww-object-types-allowed="['ww-icon']" ww-ignore-link="true"></div>
+              <div v-bind:ww-object="section.data.next" v-bind:section="section" ww-category="ww-icon"></div>
             </div>
           </div>
 
@@ -68,6 +73,7 @@ export default {
     // Use it as you like !
     section: Object
   },
+
   created() {
     //Initialize section data
     this.section.data = this.section.data || {};
@@ -182,20 +188,7 @@ export default {
             fr_FR: "Voir la mission",
             en_GB: "See the mission"
           },
-          align: "center",
-          color: "black"
-        }
-      });
-    }
-
-    if (!this.section.data.transitionButton) {
-      this.section.data.transitionButton = wwLib.wwObject.getDefault({
-        type: "ww-text",
-        data: {
-          text: {
-            fr_FR: "Voir la mission",
-            en_GB: "See the mission"
-          },
+          prev: true,
           align: "center",
           color: "black"
         }
@@ -217,10 +210,10 @@ export default {
     }
   },
   methods: {
-    cn: function(event) {
-      // `this` inside methods points to the Vue instance
-      alert("Hello " + this.name + "!");
-    }
+    previousFn: function() {
+      console.log("The counter has changed!");
+    },
+    next: function() {}
   }
 };
 </script>
@@ -231,6 +224,18 @@ export default {
 <style scoped>
 .testimonial_B {
   position: relative;
+}
+
+.testimonial_B .slide-left-leave-active,
+.testimonial_B .slide-left-enter-active {
+  transition: 1s;
+}
+
+.testimonial_B .slide-left-enter {
+  transform: translate(100px, 100px);
+}
+.testimonial_B .slide-left-LEAVE-TO {
+  transform: translate(100px, 100px);
 }
 
 .testimonial_B .background {
