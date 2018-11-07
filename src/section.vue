@@ -120,7 +120,7 @@ export default {
             en_GB: "Michel Dow - Directeur immobilier Solvay"
           },
           align: "left",
-          color: "black"
+          color: "white"
         }
       });
     }
@@ -216,7 +216,12 @@ export default {
       });
     }
   },
-  methods: {}
+  methods: {
+    cn: function(event) {
+      // `this` inside methods points to the Vue instance
+      alert("Hello " + this.name + "!");
+    }
+  }
 };
 </script>
 
@@ -288,7 +293,6 @@ export default {
   height: 100%;
   position: relative;
   margin-left: 50%;
-  min-height: calc(100% - 230px);
 }
 
 .testimonial_B .right-section-bg {
@@ -302,7 +306,6 @@ export default {
   height: 55%;
   position: absolute;
   top: 0px;
-  float: left;
 }
 
 .testimonial_B .right-text-bg {
@@ -326,11 +329,10 @@ export default {
 .testimonial_B .right-icon {
   width: 30px;
   height: 30px;
+  padding: 4px;
   background-color: #897978;
   position: absolute;
-  padding-top: 8px;
   align-self: center;
-  box-sizing: border-box;
   color: rgb(255, 255, 255);
   display: block;
   font-size: 20px;
@@ -339,17 +341,8 @@ export default {
   font-weight: 400;
   border-radius: 5px;
   box-sizing: border-box;
-  line-height: 20px;
+  line-height: 24px;
   text-align: center;
-}
-.testimonial_B .right-bottom-icon {
-  right: 10%;
-  bottom: -16%;
-}
-
-.testimonial_B .right-top-icon {
-  top: 10%;
-  left: 25%;
 }
 
 .testimonial_B .right-tail {
@@ -372,7 +365,7 @@ export default {
   display: inline-flex;
   text-size-adjust: 100%;
 }
-/* temporary */
+
 .testimonial_B .mission-button {
   width: 140px;
   height: 38px;
@@ -392,7 +385,7 @@ export default {
 }
 .testimonial_B .transition-button {
   float: right;
-  margin-left: 50px;
+  margin-left: 10%;
 }
 
 .testimonial_B .slide {
@@ -401,13 +394,14 @@ export default {
   text-align: center;
   color: rgb(137, 121, 120);
   cursor: pointer;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 130%;
   border-radius: 500px;
   border-color: rgb(137, 121, 120);
   border-style: solid;
   border-width: 2px;
   padding: 10px;
+  pointer-events: all;
 }
 
 .testimonial_B .previous-btn {
@@ -417,5 +411,243 @@ export default {
 
 .testimonial_B .next-btn {
   float: right;
+}
+
+@media (max-width: 750px) {
+  .testimonial_B .content {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    padding-bottom: 100px;
+  }
+
+  /* Left section CSS */
+  .testimonial_B .left-section {
+    width: 100%;
+    height: 50%;
+    position: relative;
+  }
+
+  .testimonial_B .left-section-bg {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  .testimonial_B .testimony-left-pic-container {
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    margin-left: 20%;
+  }
+  /* #FF3F66 -rose
+  #897978 -grey text
+*/
+  .testimonial_B .testimony-left-pic {
+    width: 100%;
+    height: 100%;
+  }
+
+  .testimonial_B .testimony-left-bio {
+    width: 60%;
+    height: 50px;
+    padding: 10px;
+    font-size: 12px;
+    margin-left: 20%;
+    bottom: -10px;
+    position: relative;
+  }
+
+  .testimonial_B .right-section {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 15%;
+    margin-left: 0%;
+  }
+
+  .testimonial_B .right-section-bg {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+
+  .testimonial_B .right-section-text-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    margin-left: 0px;
+  }
+
+  .testimonial_B .right-text-bg {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    position: absolute;
+    border-radius: 0px;
+    box-sizing: border-box;
+
+    background-color: #897978;
+  }
+
+  .testimonial_B .right-text {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    line-height: 25px;
+  }
+
+  .testimonial_B .right-icon {
+    display: none;
+  }
+
+  .testimonial_B .right-tail {
+    display: none;
+  }
+
+  .testimonial_B .button-container {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    bottom: -10px;
+    left: 0;
+  }
+}
+
+.testimonial_B .mission-button {
+  width: 140px;
+  height: 38px;
+  font-size: 14px;
+  line-height: 150%;
+  margin-left: calc((100% - 140px) / 2);
+}
+.testimonial_B .transition-button {
+  float: right;
+  margin-left: 10%;
+}
+
+.testimonial_B .slide {
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  line-height: 130%;
+  padding: 10px;
+}
+
+.testimonial_B .previous-btn {
+  position: absolute;
+  left: 0px;
+}
+
+.testimonial_B .next-btn {
+  position: absolute;
+  right: 0px;
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .testimonial_B .testimony-left-pic-container {
+    width: 70%;
+    height: 400px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    margin-left: 30%;
+  }
+
+  .testimonial_B .testimony-left-bio {
+    width: 70%;
+    height: 100px;
+    background-color: #ff3f66;
+    padding: 20px;
+    margin-left: 30%;
+    bottom: 20%;
+    position: absolute;
+  }
+
+  .testimonial_B .right-section-text-container {
+    width: 90%;
+    height: 60%;
+    position: absolute;
+    top: 0px;
+  }
+  .testimonial_B .right-bottom-icon {
+    right: 10%;
+    bottom: -13%;
+  }
+
+  .testimonial_B .right-top-icon {
+    top: 6%;
+    left: 25%;
+  }
+  .testimonial_B .button-container {
+    width: 80%;
+    margin-left: 5%;
+  }
+
+  .testimonial_B .slide {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    line-height: 80%;
+    padding: 10px 0px 10px 0px;
+  }
+}
+
+@media (min-width: 992px) {
+  .testimonial_B .right-bottom-icon {
+    right: 10%;
+    bottom: -13%;
+  }
+
+  .testimonial_B .right-top-icon {
+    top: 6%;
+    left: 25%;
+  }
+  .testimonial_B .button-container {
+    width: 55%;
+    height: 100px;
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    display: inline-flex;
+    text-size-adjust: 100%;
+  }
+
+  .testimonial_B .slide {
+    width: 40px;
+    height: 40px;
+    line-height: 95%;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .testimonial_B .slide {
+    width: 50px;
+    height: 50px;
+    line-height: 130%;
+    padding: 10px;
+  }
+  .testimonial_B .right-bottom-icon {
+    right: 10%;
+    bottom: -18%;
+  }
+
+  .testimonial_B .right-top-icon {
+    top: 11%;
+    left: 25%;
+  }
+
+  .testimonial_B .button-container {
+    width: 55%;
+    height: 100px;
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    display: inline-flex;
+    text-size-adjust: 100%;
+  }
 }
 </style>
