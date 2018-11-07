@@ -44,7 +44,8 @@
         <div class="button-container">
 
           <div class="mission-button">
-            <wwObject @click.native="previousFn" v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']"></wwObject>
+            <wwObject @click.native="previousFn" v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']">
+            </wwObject>
           </div>
 
           <div class="transition-button">
@@ -406,7 +407,7 @@ export default {
   border-style: solid;
   border-width: 2px;
   padding: 10px;
-  pointer-events: all;
+  pointer-events: auto;
 }
 
 .testimonial_B .previous-btn {
