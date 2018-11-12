@@ -233,7 +233,7 @@ export default {
       this.section.data.previousBtn = wwLib.wwObject.getDefault({
         type: "ww-icon",
         data: {
-          icon: "fa fa-chevron-left",
+          icon: "fa fa-arrow-left",
           color: "#897978",
           backgroundColor: "#FFFFFF",
           borderColor: "",
@@ -250,7 +250,7 @@ export default {
       this.section.data.nextBtn = wwLib.wwObject.getDefault({
         type: "ww-icon",
         data: {
-          icon: "fa fa-chevron-right",
+          icon: "fa fa-arrow-right",
           color: "#897978",
           backgroundColor: "#FFFFFF",
           borderColor: "",
