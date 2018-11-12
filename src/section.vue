@@ -13,7 +13,7 @@
     <wwObject class="background" v-bind:ww-object="section.data.testimonialBg" v-bind:section="section" ww-category="background"></wwObject>
     <div class="content">
       <transition name="slide-left">
-        <div class="left-section">
+        <div :class="{'left-content-animation-start': isActive, 'left-content-animation-end': notActive}" class="left-section">
           <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
 
           <div class="testimony-left-pic-container">
@@ -27,7 +27,7 @@
         </div>
       </transition>
 
-      <div class="right-section">
+      <div :class="{'right-contet-animation-start': isActive, 'right-contet-animation-end': notActive}" class="right-section">
 
         <wwObject class="right-section-bg" v-bind:ww-object="section.data.rightSectionBg" v-bind:section="section" ww-category="background">
         </wwObject>
@@ -44,16 +44,16 @@
         <div class="button-container">
 
           <div class="mission-button">
-            <wwObject @click.native="previousFn" v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']">
+            <wwObject v-bind:ww-object="section.data.transitionButton" v-bind:section="section" ww-inside-ww-object="true" ww-default-object-type="ww-text" ww-object-types-allowed="['ww-text']">
             </wwObject>
           </div>
 
           <div class="transition-button">
-            <div class="slide previous-btn fa fa-chevron-left">
-              <div class="" v-bind:ww-object="section.data.previous" v-bind:section="section" ww-category="ww-icon"></div>
+            <div>
+              <wwObject class="slide previous-btn" @click.native="previousFn" v-bind:ww-object="section.data.previousBtn" v-bind:section="section" ww-category="ww-icon"></wwObject>
             </div>
-            <div class="slide next-btn fa fa-chevron-right">
-              <div v-bind:ww-object="section.data.next" v-bind:section="section" ww-category="ww-icon"></div>
+            <div>
+              <wwObject class="slide next-btn" @click.native="nextFn" v-bind:ww-object="section.data.nextBtn" v-bind:section="section" ww-category="ww-icon"></wwObject>
             </div>
           </div>
 
@@ -75,9 +75,43 @@ export default {
     section: Object
   },
 
+  data() {
+    return {
+      isActiveLeft: false,
+      isActiveRight: false,
+      isActive: false,
+      notActive: false
+    };
+  },
+  methods: {
+    wait(ms) {
+      return new Promise((r, j) => setTimeout(r, ms));
+    },
+    slideFn() {
+      this.isActive = true;
+      this.wait(1000)
+        .then(() => {
+          this.notActive = !this.notActive;
+          this.wait(1000)
+            .then(() => {
+              this.isActive = false;
+              this.notActive = false;
+            })
+            .catch(err => {});
+        })
+        .catch(err => {});
+    },
+    previousFn() {
+      this.slideFn();
+    },
+    nextFn() {
+      this.slideFn();
+    }
+  },
   created() {
     //Initialize section data
     this.section.data = this.section.data || {};
+
     if (!this.section.data.testimonialBg) {
       this.section.data.testimonialBg = wwLib.wwObject.getDefault({
         type: "ww-image",
@@ -197,24 +231,38 @@ export default {
     }
 
     if (!this.section.data.previous) {
-      this.section.data.previous = wwLib.wwObject.getDefault({
+      this.section.data.previousBtn = wwLib.wwObject.getDefault({
         type: "ww-icon",
-        data: {}
+        data: {
+          icon: "fa fa-chevron-left",
+          color: "#897978",
+          backgroundColor: "#FFFFFF",
+          borderColor: "",
+          classes: [
+            "ww-class-img-format-round",
+            "ww-class-font-size-small",
+            "ww-class-icon-size-medium"
+          ]
+        }
       });
     }
 
     if (!this.section.data.next) {
-      this.section.data.next = wwLib.wwObject.getDefault({
+      this.section.data.nextBtn = wwLib.wwObject.getDefault({
         type: "ww-icon",
-        data: {}
+        data: {
+          icon: "fa fa-chevron-right",
+          color: "#897978",
+          backgroundColor: "#FFFFFF",
+          borderColor: "",
+          classes: [
+            "ww-class-img-format-round",
+            "ww-class-font-size-small",
+            "ww-class-icon-size-medium"
+          ]
+        }
       });
     }
-  },
-  methods: {
-    previousFn: function() {
-      console.log("The counter has changed!");
-    },
-    next: function() {}
   }
 };
 </script>
@@ -225,18 +273,6 @@ export default {
 <style scoped>
 .testimonial_B {
   position: relative;
-}
-
-.testimonial_B .slide-left-leave-active,
-.testimonial_B .slide-left-enter-active {
-  transition: 1s;
-}
-
-.testimonial_B .slide-left-enter {
-  transform: translate(100px, 100px);
-}
-.testimonial_B .slide-left-LEAVE-TO {
-  transform: translate(100px, 100px);
 }
 
 .testimonial_B .background {
@@ -395,8 +431,8 @@ export default {
 }
 
 .testimonial_B .slide {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   text-align: center;
   color: rgb(137, 121, 120);
   cursor: pointer;
@@ -417,6 +453,62 @@ export default {
 
 .testimonial_B .next-btn {
   float: right;
+}
+
+/* ------------------------Start------------------------- */
+
+.testimonial_B .left-content-animation-start {
+  -webkit-transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+
+  -webkit-transform: translateX(-150%);
+  -moz-transform: translateX(-150%);
+  -o-transform: translateX(-150%);
+  transform: translateX(-150%);
+}
+
+.testimonial_B .right-contet-animation-start {
+  -webkit-transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+
+  -webkit-transform: translateX(1000px);
+  -moz-transform: translateX(1000px);
+  -o-transform: translateX(1000px);
+  transform: translateX(1000px);
+
+  transition-delay: 0.2s;
+}
+
+/* ------------------------End------------------------- */
+
+.testimonial_B .left-content-animation-end {
+  -webkit-transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0%);
+  transform: translateX(0);
+}
+
+.testimonial_B .right-contet-animation-end {
+  -webkit-transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+
+  transition-delay: 0.2s;
 }
 
 @media (max-width: 750px) {
@@ -535,8 +627,8 @@ export default {
 }
 
 .testimonial_B .slide {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 25px;
   line-height: 130%;
   padding: 10px;
@@ -593,8 +685,8 @@ export default {
   }
 
   .testimonial_B .slide {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     cursor: pointer;
     line-height: 80%;
     padding: 10px 0px 10px 0px;
@@ -622,8 +714,8 @@ export default {
   }
 
   .testimonial_B .slide {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     line-height: 95%;
     padding: 10px;
   }
@@ -631,10 +723,10 @@ export default {
 
 @media (min-width: 1400px) {
   .testimonial_B .slide {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     line-height: 130%;
-    padding: 10px;
+    padding: 5px;
   }
   .testimonial_B .right-bottom-icon {
     right: 10%;
