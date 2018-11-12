@@ -12,20 +12,19 @@
 
     <wwObject class="background" v-bind:ww-object="section.data.testimonialBg" v-bind:section="section" ww-category="background"></wwObject>
     <div class="content">
-      <transition name="slide-left">
-        <div :class="{'left-content-animation-start': isActive, 'left-content-animation-end': notActive}" class="left-section">
-          <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
 
-          <div class="testimony-left-pic-container">
-            <wwObject class="testimony-left-pic" tag="div" v-bind:ww-object="section.data.leftTestimonyPic" v-bind:section="section" ww-category="background">
-            </wwObject>
-          </div>
+      <div :class="{'left-content-animation-start': isActive, 'left-content-animation-end': notActive}" class="left-section">
+        <wwObject class="left-section-bg" v-bind:ww-object="section.data.leftSectionBg" v-bind:section="section" ww-category="background"></wwObject>
 
-          <div class="testimony-left-bio">
-            <wwObject tag="div" v-bind:ww-object="section.data.leftTestmonyBio" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
-          </div>
+        <div class="testimony-left-pic-container">
+          <wwObject class="testimony-left-pic" tag="div" v-bind:ww-object="section.data.leftTestimonyPic" v-bind:section="section" ww-category="background">
+          </wwObject>
         </div>
-      </transition>
+
+        <div class="testimony-left-bio">
+          <wwObject tag="div" v-bind:ww-object="section.data.leftTestmonyBio" v-bind:section="section" ww-default-object-type="ww-text"></wwObject>
+        </div>
+      </div>
 
       <div :class="{'right-contet-animation-start': isActive, 'right-contet-animation-end': notActive}" class="right-section">
 
@@ -282,10 +281,12 @@ export default {
   height: 100%;
   width: 100%;
   z-index: -1;
+  overflow: hidden;
 }
 
 .testimonial_B .content {
   position: relative;
+
   width: 100%;
   height: 700px;
   padding-bottom: 100px;
@@ -517,6 +518,7 @@ export default {
     width: 100%;
     height: 700px;
     padding-bottom: 100px;
+    overflow: visible;
   }
 
   /* Left section CSS */
@@ -572,11 +574,11 @@ export default {
   }
 
   .testimonial_B .right-section-text-container {
-    width: 100%;
+    width: 90%;
     height: 100%;
     position: absolute;
     top: 0px;
-    margin-left: 0px;
+    margin-left: 5%;
   }
 
   .testimonial_B .right-text-bg {
@@ -606,11 +608,12 @@ export default {
   }
 
   .testimonial_B .button-container {
-    width: 100%;
+    width: 90%;
     height: 100px;
     position: relative;
     bottom: -10px;
     left: 0;
+    margin-left: 5%;
   }
 }
 
@@ -645,6 +648,9 @@ export default {
 }
 
 @media (min-width: 768px) and (max-width: 900px) {
+  .testimonial_B .content {
+    overflow: hidden;
+  }
   .testimonial_B .testimony-left-pic-container {
     width: 70%;
     height: 400px;
@@ -665,7 +671,7 @@ export default {
   }
 
   .testimonial_B .right-section-text-container {
-    width: 90%;
+    width: 80%;
     height: 60%;
     position: absolute;
     top: 0px;
@@ -680,7 +686,7 @@ export default {
     left: 25%;
   }
   .testimonial_B .button-container {
-    width: 80%;
+    width: 70%;
     margin-left: 5%;
   }
 
@@ -694,6 +700,23 @@ export default {
 }
 
 @media (min-width: 992px) {
+  .testimonial_B .content {
+    overflow: hidden;
+  }
+  .testimonial_B .testimony-left-pic-container {
+    width: 60%;
+    margin-left: 40%;
+  }
+  .testimonial_B .testimony-left-bio {
+    width: 60%;
+    margin-left: 40%;
+  }
+  .testimonial_B .right-section-text-container {
+    width: 70%;
+    height: 60%;
+    position: absolute;
+    top: 0px;
+  }
   .testimonial_B .right-bottom-icon {
     right: 10%;
     bottom: -13%;
@@ -704,11 +727,11 @@ export default {
     left: 25%;
   }
   .testimonial_B .button-container {
-    width: 55%;
+    width: 60%;
     height: 100px;
     position: absolute;
     bottom: 10px;
-    left: 5%;
+    left: 12%;
     display: inline-flex;
     text-size-adjust: 100%;
   }
@@ -722,6 +745,23 @@ export default {
 }
 
 @media (min-width: 1400px) {
+  .testimonial_B .content {
+    overflow: hidden;
+  }
+  .testimonial_B .testimony-left-pic-container {
+    width: 50%;
+    margin-left: 50%;
+  }
+  .testimonial_B .testimony-left-bio {
+    width: 50%;
+    margin-left: 50%;
+  }
+
+  .testimonial_B .right-section-text-container {
+    width: 55%;
+    height: 55%;
+  }
+
   .testimonial_B .slide {
     width: 45px;
     height: 45px;
@@ -739,11 +779,11 @@ export default {
   }
 
   .testimonial_B .button-container {
-    width: 55%;
+    width: 40%;
     height: 100px;
     position: absolute;
     bottom: 10px;
-    left: 5%;
+    left: 15%;
     display: inline-flex;
     text-size-adjust: 100%;
   }
