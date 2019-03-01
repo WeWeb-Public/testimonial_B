@@ -133,8 +133,8 @@ export default {
                 type: "ww-text",
                 data: {
                     text: {
-                        fr_FR: "Il nous font confiance",
-                        en_GB: "They trust us"
+                        fr: "Il nous font confiance",
+                        en: "They trust us"
                     },
                     align: "center",
                     size: 2,
@@ -168,8 +168,8 @@ export default {
                 type: "ww-text",
                 data: {
                     text: {
-                        fr_FR: "Michel Dow - Directeur immobilier Solvay",
-                        en_GB: "Michel Dow - Directeur immobilier Solvay"
+                        fr: "Michel Dow - Directeur immobilier Solvay",
+                        en: "Michel Dow - Directeur immobilier Solvay"
                     },
                     align: "left",
                     color: "white"
@@ -201,9 +201,9 @@ export default {
                 type: "ww-text",
                 data: {
                     text: {
-                        fr_FR:
+                        fr:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate",
-                        en_GB:
+                        en:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate"
                     },
                     align: "justify",
@@ -241,8 +241,8 @@ export default {
                 type: "ww-text",
                 data: {
                     text: {
-                        fr_FR: "Voir la mission",
-                        en_GB: "See the mission"
+                        fr: "Voir la mission",
+                        en: "See the mission"
                     },
                     prev: true,
                     align: "center",
